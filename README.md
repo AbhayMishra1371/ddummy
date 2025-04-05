@@ -1,20 +1,15 @@
-Okay, here is the collection of JavaScript and related HTML snippets formatted correctly for a Markdown (README.md) file. This uses H2 headings for topics and fenced code blocks with language identifiers for syntax highlighting and easy copying.
-
-markdown
 # Web Wizard 3.0 - JavaScript & DOM Snippets
-
-This file contains JavaScript code snippets from the Web Wizard 3.0 presentation, intended for easy reference and copy-pasting during hands-on sessions.
 
 ## Hello World
 
-javascript
+```javascript
 console.log("Hello, Web Development World!");
 alert("Welcome to JavaScript!");
-
+```
 
 ## Variables and Data Types
 
-javascript
+```javascript
 let dynamicVariable = "I can change";
 const constantVariable = "I stay the same";
 var oldSchoolVariable = "Legacy declaration";
@@ -32,11 +27,11 @@ console.log(message);
 
 const year = 2024;
 console.log(year);
-
+```
 
 ## Array Operations
 
-javascript
+```javascript
 let fruits = ['Apple', 'Banana', 'Cherry'];
 
 console.log(fruits[0]);
@@ -62,17 +57,17 @@ let colors = ['red', 'green'];
 colors.push('blue');
 console.log(colors);
 console.log(colors[0]);
-
+```
 
 ## Objects
 
-javascript
+```javascript
 let student = {
   name: "John Doe",
   age: 20,
   courses: ['Web Dev', 'Design'],
   introduce() {
-    return Hi, I'm ${this.name};
+    return `Hi, I'm ${this.name}`;
   }
 };
 
@@ -92,17 +87,17 @@ let car = { make: "Toyota", model: "Camry", year: 2021 };
 console.log(car.model);
 car.color = "Silver";
 console.log(car);
-
+```
 
 ## Functions
 
-javascript
+```javascript
 function greet(name) {
-  return Hello, ${name}!;
+  return `Hello, ${name}!`;
 }
 console.log(greet("Traditional"));
 
-const greetArrow = (name) => Hello, ${name}!;
+const greetArrow = (name) => `Hello, ${name}!`;
 console.log(greetArrow("Arrow"));
 
 const calculate = (a, b, operation) => {
@@ -120,17 +115,17 @@ console.log(calculate(10, 5, 'subtract'));
 });
 
 function sayHello(name) {
-  console.log(Hello, ${name}!);
+  console.log(`Hello, ${name}!`);
 }
 sayHello("Web Wizards");
 
 const add = (x, y) => x + y;
 console.log(add(10, 5));
+```
 
+## Callback Functions
 
-## Callback Functions (Example)
-
-javascript
+```javascript
 function mainFunctionConceptual(param, callbackFunction) {
   console.log('Main function executed');
   callbackFunction();
@@ -144,218 +139,228 @@ function mainFunctionActual(x, callback) {
 mainFunctionActual(5, function(value) {
   console.log('Callback result:', value);
 });
+```
 
+## Selecting Existing Elements
 
-## Selecting HTML Elements
-
-### Example HTML
-html
-<div id="myElement">Element with ID</div>
-<p class="myClass">First Paragraph with Class</p>
-<p class="myClass">Second Paragraph with Class</p>
-
-
-### JavaScript
-javascript
-let elementById = document.getElementById('myElement');
-let elementsByClass = document.getElementsByClassName('myClass');
-let queryElement = document.querySelector('.myClass');
-let allQueryElements = document.querySelectorAll('.myClass');
+```javascript
+let elementById = document.getElementById('header');
+let elementsByClass = document.getElementsByClassName('nav-item');
+let queryElement = document.querySelector('.content');
+let allQueryElements = document.querySelectorAll('p');
 
 console.log(elementById);
 console.log(elementsByClass);
-console.log(queryElement); // Selects the first paragraph only
-console.log(allQueryElements); // Selects both paragraphs
+console.log(queryElement);
+console.log(allQueryElements);
 
+let allLinks = document.querySelectorAll('a');
+console.log(`Found ${allLinks.length} links on this page`);
+
+let firstImage = document.querySelector('img');
+console.log(firstImage ? firstImage.src : 'No images found');
+
+let bodyElement = document.body;
+console.log(bodyElement);
+```
 
 ## Creating HTML Elements
 
-javascript
+```javascript
 let newDiv = document.createElement('div');
 newDiv.textContent = 'New Dynamic Content';
 newDiv.classList.add('dynamic-class');
-console.log(newDiv);
+document.body.appendChild(newDiv);
 
-// Note: To make this element visible on the page,
-// you need to append it to an existing element, e.g.:
-// document.body.appendChild(newDiv);
+let newButton = document.createElement('button');
+newButton.textContent = 'Click Me';
+newButton.style.padding = '10px';
+newButton.style.backgroundColor = '#4CAF50';
+newButton.style.color = 'white';
+document.body.appendChild(newButton);
+```
 
+## Updating Existing Elements
 
-## Updating and Removing Elements
-
-### Example HTML
-html
-<p id="myParagraph">Original Text</p>
-
-
-### JavaScript
-javascript
-let element = document.getElementById('myParagraph');
-
-if (element) {
-  element.innerHTML = '<strong>Updated Content</strong>';
-  element.style.color = 'blue';
-  element.style.backgroundColor = 'yellow';
-
-  // Uncomment the next line to remove the element
-  // element.remove();
-} else {
-  console.log("Element 'myParagraph' not found!");
+```javascript
+let paragraphs = document.querySelectorAll('p');
+if (paragraphs.length > 0) {
+  paragraphs[0].innerHTML = '<strong>Updated Content</strong>';
+  paragraphs[0].style.color = 'blue';
+  paragraphs[0].style.backgroundColor = 'yellow';
 }
 
+let headings = document.querySelectorAll('h1, h2, h3');
+if (headings.length > 0) {
+  headings[0].textContent = 'Modified Heading';
+  headings[0].style.fontFamily = 'Arial, sans-serif';
+}
 
-## Events (Click/Mouse)
+let firstDiv = document.querySelector('div');
+if (firstDiv) {
+  firstDiv.innerText = 'Content changed via console';
+  firstDiv.style.border = '2px solid red';
+  firstDiv.style.padding = '10px';
+}
+```
 
-### Example HTML
-html
-<button id="myButton">Click Me</button>
+## Working with Events
 
-
-### JavaScript
-javascript
-let myButton = document.getElementById('myButton');
-
-if (myButton) {
-  myButton.addEventListener('click', () => {
-    console.log('Element clicked!');
+```javascript
+let anyButton = document.querySelector('button');
+if (anyButton) {
+  anyButton.addEventListener('click', () => {
+    console.log('Button clicked!');
     alert('Button was clicked!');
   });
 }
 
 document.addEventListener('click', (event) => {
-  // Logs coordinates relative to the viewport
   console.log('Clicked at coordinates:', event.clientX, event.clientY);
 });
 
-
-## Events (Submit)
-
-### Example HTML
-html
-<form id="myForm">
-  <label>Name: <input type="text" name="username"></label>
-  <button type="submit">Submit</button>
-</form>
-
-
-### JavaScript
-javascript
-let form = document.getElementById('myForm');
-
-if (form) {
-  form.addEventListener('submit', (event) => {
-    event.preventDefault(); // IMPORTANT: Stops page reload
-    console.log('Form submission prevented. Ready for JS handling.');
-    alert('Form submit intercepted by JS!');
-    // validateForm(); // Example call to a validation function
-  });
-}
-
-// Dummy function for the example
-function validateForm() {
-  console.log("Validating form...");
-  return true;
-}
-
-
-## Events (Keyboard)
-
-javascript
 document.addEventListener('keydown', (event) => {
-  console.log(Key pressed: ${event.key});
+  console.log(`Key pressed: ${event.key}`);
   if (event.key === 'Enter') {
     console.log('Enter key pressed!');
-    // alert('Enter was pressed!'); // Optional alert
   }
 });
 
-
-## Form Handling (Data Extraction)
-
-### Example HTML
-html
-<form id="dataForm">
-  <label>Name: <input type="text" name="username" value="TestUser"></label>
-  <label>Email: <input type="email" name="email" value="test@example.com"></label>
-  <button type="submit">Submit Data</button>
-</form>
-
-
-### JavaScript
-javascript
-let dataForm = document.getElementById('dataForm');
-
-if (dataForm) {
-  dataForm.addEventListener('submit', (event) => {
+let anyLink = document.querySelector('a');
+if (anyLink) {
+  anyLink.addEventListener('click', (event) => {
     event.preventDefault();
-    const formData = new FormData(dataForm);
+    console.log('Link click prevented');
+    console.log('Would have gone to:', anyLink.href);
+  });
+}
+```
+
+## Form Interaction
+
+```javascript
+let anyForm = document.querySelector('form');
+if (anyForm) {
+  anyForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    console.log('Form submission prevented');
+    
+    const formData = new FormData(anyForm);
     const data = Object.fromEntries(formData.entries());
-
-    console.log('Form data extracted:', data);
-
-    if (validateFormData(data)) {
-       submitFormData(data);
-    }
+    console.log('Form data:', data);
   });
 }
 
-// Dummy validation function
-function validateFormData(data) {
-  console.log("Validating data:", data);
-  // Replace with real validation logic
-  return data.username && data.email;
-}
+let inputFields = document.querySelectorAll('input');
+console.log(`Found ${inputFields.length} input fields`);
 
-// Dummy submission function
-function submitFormData(data) {
-  console.log("Submitting data:", data);
-  // Replace with logic to send data (e.g., using fetch API)
-  alert(Data submitted (simulated): ${JSON.stringify(data)});
+if (inputFields.length > 0) {
+  inputFields[0].value = 'Changed via console';
+  
+  inputFields[0].addEventListener('input', (event) => {
+    console.log('Input changed to:', event.target.value);
+  });
 }
-
+```
 
 ## Class Manipulation
 
-### Example HTML
-html
-<div id="toggleDiv" class="box">Toggle Me</div>
-<div id="checkDiv" class="box hidden">Check Me</div>
-<div id="multiDiv" class="box old-class">Multi Class</div>
-<style>
-  .box { padding: 10px; border: 1px solid #ccc; margin: 5px; }
-  .active { background-color: lightblue; font-weight: bold; }
-  .hidden { display: none; }
-  .new-class { border-color: green; }
-  .another-class { color: purple; }
-</style>
-
-
-### JavaScript
-javascript
-let toggleElement = document.getElementById('toggleDiv');
-let checkElement = document.getElementById('checkDiv');
-let multiElement = document.getElementById('multiDiv');
-
-if (toggleElement) {
-  toggleElement.addEventListener('click', () => {
-    toggleElement.classList.toggle('active');
-    console.log("Toggled 'active' class. Current classes:", toggleElement.className);
-  });
+```javascript
+let targetElement = document.querySelector('.some-class');
+if (targetElement) {
+  targetElement.classList.add('highlight');
+  console.log('Current classes:', targetElement.className);
+  
+  targetElement.classList.toggle('visible');
+  console.log('After toggle:', targetElement.className);
+  
+  targetElement.classList.remove('some-class');
+  console.log('After removal:', targetElement.className);
+  
+  console.log('Has highlight class?', targetElement.classList.contains('highlight'));
 }
 
-if (checkElement) {
-  if (checkElement.classList.contains('hidden')) {
-    console.log('Check element initially contains "hidden" class.');
-    // Example: remove hidden after 2 seconds
-    // setTimeout(() => { checkElement.classList.remove('hidden'); }, 2000);
+let allParagraphs = document.querySelectorAll('p');
+allParagraphs.forEach((p, index) => {
+  p.classList.add('modified-element');
+  if (index % 2 === 0) {
+    p.classList.add('even-element');
   }
+});
+```
+
+## DOM Traversal
+
+```javascript
+let startElement = document.querySelector('ul');
+if (startElement) {
+  let parent = startElement.parentElement;
+  console.log('Parent element:', parent);
+  
+  let children = startElement.children;
+  console.log('Child elements:', children);
+  console.log(`Number of children: ${children.length}`);
+  
+  let firstChild = startElement.firstElementChild;
+  console.log('First child:', firstChild);
+  
+  let nextSibling = startElement.nextElementSibling;
+  console.log('Next sibling:', nextSibling);
 }
 
-if (multiElement) {
-  multiElement.classList.add('new-class', 'another-class');
-  console.log("Added classes. Current classes:", multiElement.className);
-  multiElement.classList.remove('old-class');
-  console.log("Removed 'old-class'. Current classes:", multiElement.className);
+let deepElement = document.querySelector('.nested-content');
+if (deepElement) {
+  console.log('Closest ul:', deepElement.closest('ul'));
+  console.log('All parents with class:', deepElement.closest('.container'));
 }
 ```
+
+## Style Manipulation
+
+```javascript
+let styleTarget = document.querySelector('div');
+if (styleTarget) {
+  styleTarget.style.backgroundColor = '#f0f0f0';
+  styleTarget.style.color = '#333';
+  styleTarget.style.padding = '20px';
+  styleTarget.style.borderRadius = '5px';
+  styleTarget.style.boxShadow = '0 4px 8px rgba(0,0,0,0.2)';
+  styleTarget.style.transition = 'all 0.3s ease';
+  
+  setTimeout(() => {
+    styleTarget.style.backgroundColor = '#ffeb3b';
+    styleTarget.style.transform = 'scale(1.05)';
+  }, 2000);
+}
+
+let pageBody = document.body;
+pageBody.style.fontFamily = 'Arial, sans-serif';
+```
+
+## Useful Console Techniques
+
+```javascript
+console.log('Basic logging');
+console.error('Error message');
+console.warn('Warning message');
+
+console.group('Grouped Messages');
+console.log('Detail 1');
+console.log('Detail 2');
+console.groupEnd();
+
+console.time('Timer');
+setTimeout(() => {
+  console.timeEnd('Timer');
+}, 1000);
+
+let debugObject = { a: 1, b: { c: 3, d: [4, 5, 6] } };
+console.log('Simple output:', debugObject);
+console.dir(debugObject);
+
+console.table([
+  { name: 'John', age: 25, role: 'Developer' },
+  { name: 'Jane', age: 30, role: 'Designer' },
+  { name: 'Bob', age: 22, role: 'Intern' }
+]);
 ```
